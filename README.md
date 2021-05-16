@@ -1,3 +1,3 @@
 # Lion
 
-Aplicação baseada no Twitter
+Aplicação baseada no Twitter utilizando Flask e SQLAlchemy
