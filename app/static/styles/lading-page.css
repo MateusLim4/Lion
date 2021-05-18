@@ -1,0 +1,36 @@
+#icon{
+    width: 3rem;
+}
+
+textarea{
+    outline: none;
+    padding: 1rem 2rem;
+}
+
+textarea:focus, textarea:hover{
+    border: solid 1px #0d6efd !important;
+    resize: none;
+}
+
+#postar, #posts,#configs, #follower{
+    background: white;
+    
+}
+
+#like:hover{
+    cursor:pointer;
+    color: #0d6efd;
+}
+
+#deslike:hover{
+    cursor:pointer;
+    color: #dc3545;
+}
+
+#configs{
+    margin-left: 80rem;
+}
+
+#configs div:first-child{
+    margin-bottom: 48rem;
+}

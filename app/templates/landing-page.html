@@ -11,13 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/styles/stylesheet.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../static/styles/lading-page.css">
 </head>
-<body class="bg-primary">
-    <main class="container mt-5">
-        <div class="d-flex justify-content-between">
-            <section id='follower' class="bg-light rounded p-4 d-block">
+<body class="bg-light">
+    <main class=" d-flex container mt-5">
+        <div class="d-flex justify-content-center">
+            <section id='follower' class="rounded ps-5 pt-5 pe-5 pb-3 border border-black">
                 <div class="d-flex align-items-center border-bottom border-primary">
-                    <img src="../static/img/lion.svg" style="width: 3rem;" class="mb-2 me-2" alt="Logo">
+                    <img src="../static/img/lion.svg" id='icon' class="mb-2 me-2" alt="Logo">
                     <h1 class="text-primary">Lion</h1>
                 </div>
 
@@ -34,48 +35,55 @@
                 </div>
             </section>
     
-            <section id='principal' class="bg-light rounded p-5">
-                <div>
-                    <h2><i class="bi bi-person-circle me-2"></i>Seu nick</h2>
-                </div>
-                <form action="">
-                    <textarea name="" id="" cols="85" rows="10" style="resize: none"></textarea>
+            <section id='principal' class="rounded ">
+                <div id="postar" class="rounded ps-5 pt-5 pe-5 pb-3 border border-black">
                     <div>
-                        <button type="reset">Descartar</button>
-                        <button type="submit">Publicar</button>
+                        <h2><i class="bi bi-person-circle me-2"></i>Seu nick</h2>
                     </div>
-                </form>
-                <div>
-                    <ul>
-                        <li>
+                    <form action="">
+                        <textarea name="" id="" cols="75" rows="5" class="border" required></textarea>
+                        <div class="d-flex justify-content-end mt-2 mb-0">
+                            <button type="reset" class='btn btn-danger'>Descartar</button>
+                            <button type="submit" class="btn btn-primary ms-2">Publicar</button>
+                        </div>
+                    </form>
+                </div>
+                <div id=posts class="rounded ps-5 pt-5 pe-5 pb-3 border border-black mt-4">
+                    <ul class="ps-0">
+                        <div>
                             <div>
-                                <p><i class="bi bi-person-circle me-2"></i>MateusSilva</p>
+                                <div id='prefil' href="" class="d-flex">
+                                    <h1 class='me-3'><i class="bi bi-person-circle"></i></h1>
+                                    <h5 class="mt-2">MateusSilva</h5>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="ms-5 ps-2">Minha publicação aqui</p>
+                                </div>
                             </div>
-                            <div>
-                                <p>Minha publicação aqui</p>
+                            <div class="d-flex justify-content-end">
+                                <h6 id='deslike' onclick='Like.deslike()' class="me-3"><i class="bi bi-hand-thumbs-down me-1"></i>Deslike</h6>
+                                <h6 id='like' onclick="Like.like()"><i class="bi bi-hand-thumbs-up me-1"></i>Like</h6> 
                             </div>
-                            <div>
-                                <div></div> Curti
-                                <div></div> Não Curti
-                            </div>
-                        </li>
+                        </div>        
                     </ul>
                 </div>
             </section>
     
-            <section id='configs' class="bg-light rounded p-1 ">
-                <div class='d-inline justify-content-center'>
-                    <h2><i class="bi bi-person-circle"></i></h2>
-                    <h3 class="fs-6">Seu perfil</h3>
+            <section id='configs' class=" rounded p-3 rounded border border-black position-fixed">
+                <div>
+                    <a href="#"><i class="bi bi-person-circle fs-2 color-black"></i></a>
                 </div>
-                <div class="align-self-end d-flex">
-    
-                    <h3 class="fs-6"></i>Configurações</h3>
+                
+                <div class="align-self-end">
+                    <a href="#" ><i class="bi bi-gear-fill fs-2"></i></a>
                 </div>
-    
+                    
             </section>
         </div>
-        
     </main>
+    <script src="../static/scripts/lading-page.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
 </body>
 </html>
