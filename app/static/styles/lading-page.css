@@ -14,9 +14,6 @@ main{
     width: 3rem;
 }
 
-#follower{
-    margin-left: -10rem;
-}
 
 #content {
     height: 100vw;
@@ -65,3 +62,9 @@ a{
 #links{
     padding-right: 6rem!important;
 }
+
+/* MODAL -------------------------*/
+#newModal{
+    background: rgba(0, 0, 0, 0.75);
+}
+
