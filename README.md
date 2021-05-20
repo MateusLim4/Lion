@@ -1,3 +1,4 @@
 # Lion
 
-Aplicação baseada no Twitter utilizando Flask e SQLAlchemy
+# Necesario baixar as seguintes bibliotecas:
+# Flask-login: pip install Flask-login

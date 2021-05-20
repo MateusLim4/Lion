@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
+from werkzeug.security import check_password_hash
 
 # Criação da engine
 engine = create_engine("sqlite:///login.db")
@@ -10,8 +11,8 @@ conn = engine.connect()
 
 Base = declarative_base()
 
-class Usuario(Base):
-    __tablename__ = "tb_usuarios"
+class Login(Base):
+    __tablename__ = "tb_logins"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     login = Column(String(28), unique=True)
@@ -20,6 +21,10 @@ class Usuario(Base):
     def __init__(self, login, password):
         self.login = login
         self.password = password
+    
+    def verify_passoword(self, pwd):
+        return check_password_hash(self.senha, pwd)
+
 
 # Cria o banco
 Base.metadata.create_all(engine)
@@ -33,12 +38,12 @@ session = Session()
 
 # Programa principal
 
-alunos = {"1" : {"login": "Lucas","senha": "teste"}, 
+alunos = {"1" : {"login": request.form["user_name"],"senha": request.form["user_name"]}, 
           "2" : {"login": "Rafex","senha": "teste"},
           "3" : {"login": "Mateus","senha": "teste"}}
 
 def criaUser(user):
-    user = Usuario(user["login"], user["senha"])
+    user = Login(user["login"], user["senha"])
 
     session.add(user)
 
@@ -46,6 +51,10 @@ def criaUser(user):
     session.close()
 
 
+
+criaUser(alunos["1"])
+criaUser(alunos["2"])
+criaUser(alunos["3"])
 
 
 
