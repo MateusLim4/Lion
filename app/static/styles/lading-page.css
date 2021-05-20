@@ -1,7 +1,31 @@
+*{
+    box-sizing: border-box!important;
+}
+
+main{
+    height: 100vw;
+}
+
+
+/*followers-------------------------------------*/
+
+
 #icon{
     width: 3rem;
 }
 
+#follower{
+    margin-left: -10rem;
+}
+
+#content {
+    height: 100vw;
+    padding-left: 2.7rem !important;
+    margin-left: -4rem;
+}
+
+
+/*Principal-------------------------------------*/
 textarea{
     outline: none;
     padding: 1rem 2rem;
@@ -12,14 +36,15 @@ textarea:focus, textarea:hover{
     resize: none;
 }
 
-#postar, #posts,#configs, #follower{
-    background: white;
-    
+#principal{
+    margin-left: 18.2rem;
 }
 
+
+/*Principal: POSTS-------------------------------------*/
 #like:hover{
     cursor:pointer;
-    color: #0d6efd;
+    color: #6f42c1;
 }
 
 #deslike:hover{
@@ -27,10 +52,16 @@ textarea:focus, textarea:hover{
     color: #dc3545;
 }
 
-#configs{
-    margin-left: 80rem;
-}
+/*Configs-------------------------------------*/
 
 #configs div:first-child{
-    margin-bottom: 48rem;
+    margin-bottom: 53rem;
+}
+
+a{
+    color: black !important;
+}
+
+#links{
+    padding-right: 6rem!important;
 }
