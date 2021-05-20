@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box!important;
+}
+
+main{
+    height: 100vw;
+}
+
+
+/*followers-------------------------------------*/
+
+
+#icon{
+    width: 3rem;
+}
+
+
+#content {
+    height: 100vw;
+    padding-left: 2.7rem !important;
+    margin-left: -4rem;
+}
+
+
+/*Principal-------------------------------------*/
+textarea{
+    outline: none;
+    padding: 1rem 2rem;
+}
+
+textarea:focus, textarea:hover{
+    border: solid 1px #0d6efd !important;
+    resize: none;
+}
+
+#principal{
+    margin-left: 18.2rem;
+}
+
+
+/*Principal: POSTS-------------------------------------*/
+#like:hover{
+    cursor:pointer;
+    color: #6f42c1;
+}
+
+#deslike:hover{
+    cursor:pointer;
+    color: #dc3545;
+}
+
+/*Configs-------------------------------------*/
+
+#configs div:first-child{
+    margin-bottom: 53rem;
+}
+
+a{
+    color: black !important;
+}
+
+#links{
+    padding-right: 6rem!important;
+}
+
+/* MODAL -------------------------*/
+#newModal{
+    background: rgba(0, 0, 0, 0.75);
+}
+

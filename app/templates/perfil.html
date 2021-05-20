@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg" sizes="32x32" href="../static/img/lion.svg">
-    <title>Página Inicial</title>
+    <title>Seu perfil</title>
     <link rel="stylesheet" href="../static/styles/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
@@ -16,48 +16,41 @@
 <body class="bg-body">
     <main class=" d-flex justify-content-center container bg-light">
         <div class="d-flex justify-content-center">
-            <section id='follower' style="min-width:333.14;">
-                <div id='content' class="position-fixed pt-5  ps-3 pe-3 pb-3 me-4 border-end border-black bg-body">
-                    <div class="me-3 ">
+            <section id='follower' style="min-width:333.14;  ">
+                <div id='content' class="position-fixed pt-5 pb-3  border-end border-black bg-body" style="margin-left: -4rem;">
+                    <div style="margin-right: 0.8rem;">
                         <div class="d-flex justify-content-left mb-5">
                             <img src="../static/img/lion.svg" id='icon' class="mb-2 me-2" alt="Logo">
                             <h1 class="text-primary">Lion</h1>
                         </div>
-                    
-                        <div class="pt-3 pb-3 mb-3 border border-black bg-light rounded">
-                            <div>
-                                <h3 class='fs-5 ps-3 pb-3 mb-2 border-bottom border-black fw-bold'>Amigos</h3>
+                        <div class="mb-1 me-3 ms-4 text-center" >
+                            <i class="bi bi-person-circle" style="font-size: 100px;"></i>
+                            <div class="text-center ">
+                                <h3 class=" align-self-center fw-bold">MateusSilvaaaaa</h3>
                             </div>
-                            <ul class="p-1">
-                                <div class="mt-2 border-bottom border-black mb-3">
-                                    <div class="mb-1 justify-content-around" >
-                                        <h3 class="fs-6 ms-2 align-self-center"><i class="bi bi-person-circle me-2"></i>MateusSilvaaaaa</h3>
-                                    </div>
-                                </div>
-                            </ul>
                         </div>
-                       
-                        <div class="pt-3  border border-black bg-light rounded">
-                            <div>
-                                <h3 class='fs-5 ps-3 pb-3 pe-3 border-bottom border-black fw-bold'>Quem Seguir</h3>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="me-2 text-center">
+                                <p class="fs-3  text-primary">0</p>
+                                <p>Seguidores</p>
                             </div>
-                            <ul class="p-1">
-                                <div class="border-bottom mb-2 pb-2 border-black">
-                                    <div class="d-flex align-items-center pe-3 justify-content-around" >
-                                        <h3 class="fs-6 ms-2"><i class="bi bi-person-circle me-2 "></i>MateusSilvaaaaa</h3>
-                                        <button class="btn btn-primary fs-6 ms-2" style="padding: 0.20rem 0.5rem !important">Seguir</button>
-                                    </div>
-                                </div>
-                            </ul>
+                            <div class="text-center">
+                                <p class="fs-3  text-primary">0</p>
+                                <p>seguindo</p>
+                            </div>
                         </div>
- 
+                        <div class="pt-3 mt-4 ms-2 pb-3 mb-5 p-0 border border-black bg-light rounded">
+                            <p class="p-5" style='max-width: 250px;'>adicionar uma bio</p> 
+                        </div>
+                        <div class="text-center">
+                            <a href="#" class="text-primary "><i class="bi bi-arrow-left-square-fill fs-1"></i></a>
+                        </div>
                         
                     </div>
-                    
                 </div>
             </section>
     
-            <section id='principal' class="me-4">
+            <section id='principal'>
                 <div id="postar" class=" ps-5 pt-5 pe-5 pb-3  border border-black bg-body">
                     <div>
                         <h2><i class="bi bi-person-circle me-2"></i>Seu nick</h2>
@@ -85,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="d-block">
-                                    <p class="ms-5 ps-2" style='max-width: 700px;'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum cupiditate dolores reprehenderit adipisci expedita quaerat porro? Tempora nisi, nostrum, earum sit mollitia ipsam omnis at, alias vero perspiciatis error voluptate!</p>
+                                    <p class="ms-5 ps-2" style='max-width: 801px;'>lorem</p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -93,12 +86,32 @@
                                 <h6 id='like' onclick="Like.like()"><i class="bi bi-hand-thumbs-up me-1"></i>Like</h6> 
                             </div>
                         </div>
-                        
+                        <div class="border border-black p-4 mb-2 ">
+                            <div>
+                                <div id='prefil' href="" class="d-flex">
+                                    <h1 class='me-3'><i class="bi bi-person-circle"></i></h1>
+                                    <div class="d-flex align-items-center justify-content-between" style='width: 100%!important;'>
+                                        <h5>MateusSilva</h5>
+                                        <div>
+                                            <button class="btn btn-primary fs-6 ms-2" style="padding: 0.20rem 0.5rem !important;" >Seguir</button>
+                                            <a href='#' class="text-black ms-2"><i class="bi bi-three-dots-vertical text-black"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <p class="ms-5 ps-2">Minha publicação aqui</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <h6 id='deslike' onclick='Like.deslike()' class="me-3"><i class="bi bi-hand-thumbs-down me-1"></i>Deslike</h6>
+                                <h6 id='like' onclick="Like.like()"><i class="bi bi-hand-thumbs-up me-1"></i>Like</h6> 
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </section>
     
-            <section id='configs' class=''>
+            <section id='configs' class='' style="margin-left: 1.5rem;">
                 <div id=links class="position-fixed p-3 border-start border-black bg-body">
                     <div>
                         <a href="#"><i class="bi bi-person-circle fs-2 color-black"></i></a>
