@@ -38,25 +38,24 @@ session = Session()
 
 # Programa principal
 
-alunos = {"1" : {"login": request.form["user_name"],"senha": request.form["user_name"]}, 
-          "2" : {"login": "Rafex","senha": "teste"},
-          "3" : {"login": "Mateus","senha": "teste"}}
+def criaUser(user, pwd):
+    create = Login(user, pwd)
 
-def criaUser(user):
-    user = Login(user["login"], user["senha"])
-
-    session.add(user)
+    session.add(create)
 
     session.commit()
     session.close()
 
+def validaUser(user, pwd):
+    search = session.query(Login).filter_by(login=user).first()
 
-
-criaUser(alunos["1"])
-criaUser(alunos["2"])
-criaUser(alunos["3"])
-
-
+    if user == search.login:
+        if pwd == search.password:
+            return True
+        else:
+            return False
+    else:
+        return False
 
 
 

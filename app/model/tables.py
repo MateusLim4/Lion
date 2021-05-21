@@ -3,7 +3,7 @@ from app import db,UserMixin
 class Usuarios(db.Model, UserMixin):
     __tablename__ = "tb_usuarios"
 
-    id = db.Column(db.Integer, primarykey=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(150))
     sobrenome = db.Column(db.String(150))
     user_name = db.Column(db.String(16), unique=True)
