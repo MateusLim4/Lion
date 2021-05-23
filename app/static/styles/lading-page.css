@@ -7,6 +7,9 @@ main{
 }
 
 
+a:hover{
+    color: #6f42c1!important;
+}
 /*followers-------------------------------------*/
 
 
@@ -53,10 +56,6 @@ textarea:focus, textarea:hover{
 
 #configs div:first-child{
     margin-bottom: 53rem;
-}
-
-a{
-    color: black !important;
 }
 
 #links{
