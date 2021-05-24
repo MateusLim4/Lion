@@ -29,9 +29,9 @@ def get_user(user_id):
     return Usuarios.query.filter_by(id=user_id).first()
 
 
-@app.route("/")
-def login():
-    return render_template("login.html")
+# @app.route("/")
+# def login():
+#     return render_template("login.html")
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -81,8 +81,38 @@ def auth_singup():
 
 
 
-@app.route("/home")
+# ---------------------------------------------------------------------------------------------------------------------------- #
+
+
+lightTheme = ['bg-light','bg-body','text-dark','border-body','border-body','black']
+darkTheme = ['bg-dark','bg-black','text-light','border-dark','border-body','white']
+
+theme = lightTheme #ideal colocar consultando o Banco de dados, para deixar como padão o que foi selecionado pelo usuário
+
+@app.route("/")
 def home():
-    return render_template("landing-page.html")
+    return render_template("landing-page.html",theme=theme)
 
+@app.route("/perfil")
+def perfil():
+    return render_template('perfil.html',theme=theme)
 
+@app.route('/darkTheme',methods=['POST'])
+def dark():
+    theme = darkTheme
+    return render_template('landing-page.html',theme=theme)
+
+@app.route('/lightTheme',methods=['POST'])
+def light():
+    theme = lightTheme
+    return render_template('landing-page.html',theme=theme)
+
+@app.route('/darkTheme1',methods=['POST'])
+def dark1():
+    theme = darkTheme
+    return render_template('perfil.html',theme=theme)
+
+@app.route('/lightTheme1',methods=['POST'])
+def light1():
+    theme = lightTheme
+    return render_template('perfil.html',theme=theme)
