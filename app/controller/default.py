@@ -29,9 +29,9 @@ def get_user(user_id):
     return Usuarios.query.filter_by(id=user_id).first()
 
 
-# @app.route("/")
-# def login():
-#     return render_template("login.html")
+@app.route("/")
+def login():
+    return render_template("login.html")
 
 
 @app.route("/auth/login", methods=["POST"])
