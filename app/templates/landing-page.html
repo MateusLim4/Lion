@@ -1,3 +1,5 @@
+{% if current_user.is_authenticated %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -63,7 +65,7 @@
             <section id='principal' class="me-4">
                 <div id="postar" class=" ps-5 pt-5 pe-5 pb-3  border-bottom border-end border-start {{theme[3]}} {{theme[1]}}">
                     <div>
-                        <a href='{{url_for("perfil")}}' class="fs-2 {{theme[2]}}" style="text-decoration: none!important;"><i class="bi bi-person-circle me-2"></i>Seu nick</a>
+                        <a href='{{url_for("perfil")}}' class="fs-2 {{theme[2]}}" style="text-decoration: none!important;"><i class="bi bi-person-circle me-2"></i>{{current_user.nome + " " + current_user.sobrenome}}</a>
                     </div>
                     <form action="">
                         <textarea name="" id="" cols="80" rows="5" class="border rounded border {{theme[3]}} {{theme[0]}} {{theme[2]}}" placeholder="No que está pensando?" required></textarea>
@@ -255,3 +257,5 @@
 
 </body>
 </html>
+
+{% endif %}

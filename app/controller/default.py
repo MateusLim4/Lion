@@ -2,10 +2,21 @@ from flask import render_template, redirect, request, url_for
 from requests import api
 from datetime import date, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user
-from app import login_manager, app
+from flask_login import login_user, logout_user, UserMixin
+from app import login_manager, app, db
 from app.model.tables import Usuarios
-from api_login.api import validaUser
+from api_login.api import validaUser, loginUser, criaUser, Login
+
+def getDate():
+    today = date.today()
+    now = datetime.now()
+
+    data = today.strftime("%B %d, %Y")
+    hora = now.strftime("%H:%M:%S")
+
+    complete = data + " " + hora
+
+    return complete
 
 def validaDados(dado1, dado2):
     if dado1 == dado2:
@@ -14,43 +25,59 @@ def validaDados(dado1, dado2):
         return False
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.get(user_id)
+def get_user(user_id):
+    return Usuarios.query.filter_by(id=user_id).first()
+
 
 # @app.route("/")
 # def login():
 #     return render_template("login.html")
+
 
 @app.route("/auth/login", methods=["POST"])
 def auth_login():
     user = request.form["username"]
     senha = request.form["password"]
 
-    auth = validaUser(user, senha)
+    auth = loginUser(user, senha)
     
-    if auth:
+    if auth[0]:
+        login_user(Usuarios.query.filter_by(username=auth[1]).first())
         return redirect(url_for("home"))
     else:
         return render_template("login.html", mensagem="Usuario e senha incorretos!")
 
-# @app.route("/auth/singup", methods=["GET", "POST"])
-# def auth_singup():
-#     if request.method == "POST":   
-#         if validaDados(request.form["email"], request.form["emailConfirm"]):
-#             email = request.form["email"]
-#         else:
-#             return render_template("login.html", mensagem="Emails não batem!")
 
-#         usuario = Usuarios(request.form["name"],
-#                         request.form["lastname"],
-#                         request.form["username"],
-#                         request.form["phone"], 
-#                         email,
-#                         senha,
-#                         created_at,
-#                         updated_at)
-#     else:
-#         return render_template("login.html")    
+@app.route("/auth/singup", methods=["GET", "POST"])
+def auth_singup():
+    if request.method == "POST":   
+        if validaDados(request.form["email"], request.form["emailConfirm"]) and (Usuarios.query.filter_by(email=request.form["email"]).first() == None):
+            email = request.form["email"]
+        else:
+            return render_template("login.html", mensagem="Os Emails não batem!")
+
+        if validaDados(request.form["password"], request.form["passwordConfirm"]):
+            password = request.form["password"]
+        else:
+            return render_template("login.html", mensagem="As senhas não batem!")
+        
+        if validaUser(request.form["username"]):
+            username = request.form["username"]
+        else:
+            return render_template("login.html", mensagem="Nome de usuário não disponível")
+
+        date = getDate()
+
+        usuario = Usuarios(request.form["name"],request.form["lastname"],username, request.form["phone"], email, date, date)
+
+        criaUser(username, password)
+
+        db.session.add(usuario)
+        db.session.commit()
+
+        return render_template("login.html", mensagem="Usuário criado com sucesso!")  
+    else:
+        return render_template("login.html")    
 
 
 
