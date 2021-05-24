@@ -89,7 +89,7 @@ darkTheme = ['bg-dark','bg-black','text-light','border-dark','border-body','whit
 
 theme = lightTheme #ideal colocar consultando o Banco de dados, para deixar como padão o que foi selecionado pelo usuário
 
-@app.route("/")
+@app.route("/home")
 def home():
     return render_template("landing-page.html",theme=theme)
 
