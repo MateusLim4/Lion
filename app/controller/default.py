@@ -2,7 +2,7 @@ from flask import render_template, redirect, request, url_for
 from requests import api
 from datetime import date, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, UserMixin
+from flask_login import login_user, logout_user, UserMixin, current_user
 from app import login_manager, app, db
 from app.model.tables import Usuarios
 from api_login.api import validaUser, loginUser, criaUser, Login
@@ -31,7 +31,10 @@ def get_user(user_id):
 
 @app.route("/")
 def login():
-    return render_template("login.html")
+    if current_user.is_authenticated:
+        return redirect(url_for("home"))
+    else:
+        return render_template("login.html")
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -79,6 +82,10 @@ def auth_singup():
     else:
         return render_template("login.html")    
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
 
 
 # ---------------------------------------------------------------------------------------------------------------------------- #
