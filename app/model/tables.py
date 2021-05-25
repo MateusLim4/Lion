@@ -23,3 +23,15 @@ class Usuarios(db.Model, UserMixin):
         self.created_at = created_at
         self.updated_at = updated_at
 
+class Follow(db.Model, UserMixin):
+    __tablename__ = "tb_follow"
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user = db.Column(db.Integer, ForeingKey("tb_usuarios.id"))
+    id_seguidores = db.Column(db.Integer)
+    id_seguindo = db.Column(db.Integer)
+
+    def __init__(self, user, id_seguidores, id_seguindo):
+        self.user = user
+        self.id_seguidores = id_seguidores
+        self.id_seguindo = id_seguindo
