@@ -7,6 +7,9 @@ from app import login_manager, app, db
 from app.model.tables import Usuarios
 from api_login.api import validaUser, loginUser, criaUser, Login
 
+light = ['bg-light','bg-body','text-dark','border-body','border-body','black']
+dark = ['bg-dark','bg-black','text-light','border-dark','border-body','white']
+
 def getDate():
     today = date.today()
     now = datetime.now()
@@ -29,12 +32,28 @@ def get_user(user_id):
     return Usuarios.query.filter_by(id=user_id).first()
 
 
-@app.route("/")
-def login():
+@app.route("/home")
+def home():
     if current_user.is_authenticated:
-        return redirect(url_for("home"))
+        if current_user.theme == "light":
+            theme = light
+            return render_template("landing-page.html",theme=theme)
+        elif current_user.theme == "dark":
+            theme = dark
+            return render_template("landing-page.html",theme=theme)
     else:
         return render_template("login.html")
+
+@app.route("/perfil")
+def perfil():
+    if current_user.is_authenticated:
+        if current_user.theme == "light":
+            theme = light
+            return render_template("perfil.html",theme=theme)
+        elif current_user.theme == "dark":
+            theme = dark
+            return render_template("perfil.html",theme=theme)
+
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -71,7 +90,7 @@ def auth_singup():
 
         date = getDate()
 
-        usuario = Usuarios(request.form["name"],request.form["lastname"],username, request.form["phone"], email, date, date)
+        usuario = Usuarios(request.form["name"],request.form["lastname"],username, request.form["phone"], email, "light", date, date)
 
         criaUser(username, password)
 
@@ -85,41 +104,52 @@ def auth_singup():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))
 
 
-# ---------------------------------------------------------------------------------------------------------------------------- #
+@app.route('/home/darkTheme/<int:user_id>', methods=['POST'])
+def darkTheme(user_id):
+    query = Usuarios.query.filter_by(id=user_id).first()
+
+    query.theme = "dark"
+
+    db.session.commit()
+    db.session.close()
+    
+    return redirect(url_for("home"))
+
+@app.route('/home/lightTheme/<int:user_id>', methods=['POST'])
+def lightTheme(user_id):
+    query = Usuarios.query.filter_by(id=user_id).first()
+
+    query.theme = "light"
+
+    db.session.commit()
+    db.session.close()
+    
+    return redirect(url_for("home"))
+
+@app.route('/perfil/darkTheme/<int:user_id>', methods=['POST'])
+def darkPerfil(user_id):
+    query = Usuarios.query.filter_by(id=user_id).first()
+
+    query.theme = "dark"
+
+    db.session.commit()
+    db.session.close()
+    
+    return redirect(url_for("perfil"))
+
+@app.route('/perfil/lightTheme/<int:user_id>', methods=['POST'])
+def lightPerfil(user_id):
+    query = Usuarios.query.filter_by(id=user_id).first()
+
+    query.theme = "light"
+
+    db.session.commit()
+    db.session.close()
+    
+    return redirect(url_for("perfil"))
 
 
-lightTheme = ['bg-light','bg-body','text-dark','border-body','border-body','black']
-darkTheme = ['bg-dark','bg-black','text-light','border-dark','border-body','white']
 
-theme = lightTheme #ideal colocar consultando o Banco de dados, para deixar como padão o que foi selecionado pelo usuário
-
-@app.route("/home")
-def home():
-    return render_template("landing-page.html",theme=theme)
-
-@app.route("/perfil")
-def perfil():
-    return render_template('perfil.html',theme=theme)
-
-@app.route('/darkTheme',methods=['POST'])
-def dark():
-    theme = darkTheme
-    return render_template('landing-page.html',theme=theme)
-
-@app.route('/lightTheme',methods=['POST'])
-def light():
-    theme = lightTheme
-    return render_template('landing-page.html',theme=theme)
-
-@app.route('/darkTheme1',methods=['POST'])
-def dark1():
-    theme = darkTheme
-    return render_template('perfil.html',theme=theme)
-
-@app.route('/lightTheme1',methods=['POST'])
-def light1():
-    theme = lightTheme
-    return render_template('perfil.html',theme=theme)

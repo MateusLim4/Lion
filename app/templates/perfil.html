@@ -1,3 +1,5 @@
+{% if current_user.is_authenticated %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,14 +26,16 @@
             <section id='follower' style="min-width:333.14;  ">
                 <div id='content' class="position-fixed pt-5 pb-3  border-end {{theme[3]}} {{theme[1]}}" style="margin-left: -4rem;">
                     <div style="margin-right: 0.8rem;">
-                        <div class="d-flex justify-content-left mb-5">
-                            <img src="../static/img/lion.svg" id='icon' class="mb-2 me-2" alt="Logo">
-                            <h1 class="text-primary">Lion</h1>
-                        </div>
+                        <a href="/home" style="text-decoration: none !important;">
+                            <div class="d-flex justify-content-left mb-5">
+                                <img src="../static/img/lion.svg" id='icon' class="mb-2 me-2" alt="Logo">
+                                <h1 class="text-primary">Lion</h1>
+                            </div>
+                        </a>
                         <div class="mb-1 me-3 ms-4 text-center" >
                             <i class="bi bi-person-circle" style="font-size: 100px;"></i>
                             <div class="text-center ">
-                                <h3 class=" align-self-center fw-bold">MateusSilvaaaaa</h3>
+                                <h3 class=" align-self-center fw-bold">{{current_user.nome + " " + current_user.sobrenome}}</h3>
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
@@ -60,11 +64,8 @@
     
             <section id='principal'>
                 <div id="postar" class=" ps-5 pt-5 pe-5 pb-3  border-bottom border-end border-start {{theme[3]}} {{theme[1]}}">
-                    <div>
-                        <a href='#' class="fs-2 {{theme[2]}}" style="text-decoration: none!important;"><i class="bi bi-person-circle me-2"></i>Seu nick</a>
-                    </div>
                     <form action="">
-                        <textarea name="" id="" cols="80" rows="5" class="border rounded {{theme[3]}} {{theme[0]}} {{theme[2]}}" placeholder="No que está pensando?" required></textarea>
+                        <textarea name="" id="" cols="80" rows="3" class="border rounded {{theme[3]}} {{theme[0]}} {{theme[2]}}" placeholder="No que está pensando?" required></textarea>
                         <div class="d-flex justify-content-end mt-2 mb-0">
                             <button type="reset" class='btn btn-danger'>Descartar</button>
                             <button type="submit" class="btn btn-primary ms-2">Publicar</button>
@@ -133,10 +134,10 @@
                       </h2>
                       <div id="flush-collapseOne" class="accordion-collapse collapse {{theme[0]}} {{theme[2]}}" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body {{theme[1]}} d-flex justify-content-around p-4">
-                            <form action="/darkTheme1" method="POST">
+                            <form action="/perfil/darkTheme/{{current_user.id}}" method="POST">
                                 <button type="submit" class="btn btn-dark" value='on' style="margin-left: 0.5rem; padding: 0.5rem 3rem;">Escuro</button>
                             </form>
-                            <form action="/lightTheme1" method="POST">
+                            <form action="/perfil/lightTheme/{{current_user.id}}" method="POST">
                                 <button type="submit" class="btn btn-light" value="off" style="margin-left: 0.5rem; padding: 0.5rem 3rem;">Claro</button>
                             </form>
                         </div>
@@ -282,3 +283,5 @@
 
 
 </html>
+
+{% endif %}
