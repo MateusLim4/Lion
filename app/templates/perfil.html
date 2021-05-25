@@ -65,11 +65,13 @@
             <section id='principal'>
                 <div id="postar" class=" ps-5 pt-5 pe-5 pb-3  border-bottom border-end border-start {{theme[3]}} {{theme[1]}}">
                     <form action="">
-                        <textarea name="" id="" cols="80" rows="3" class="border rounded {{theme[3]}} {{theme[0]}} {{theme[2]}}" placeholder="No que está pensando?" required></textarea>
+                        <textarea name="" id="" cols="80" rows="3" onkeyup="limite_textarea(this.value)" id="texto" class="border rounded {{theme[3]}} {{theme[0]}} {{theme[2]}}" placeholder="No que está pensando?" required></textarea>
                         <div class="d-flex justify-content-end mt-2 mb-0">
                             <button type="reset" class='btn btn-danger'>Descartar</button>
                             <button type="submit" class="btn btn-primary ms-2">Publicar</button>
                         </div>
+
+                        <span id="cont" class="{{theme[2]}}">300</span> Restantes <br>
                     </form>
                 </div>
                 <div id=posts class=" ps-5 pt-5 pe-5 pb-3 border {{theme[3]}} {{theme[1]}} mt-4">
@@ -243,6 +245,7 @@
                             <button class="btn btn-outline-danger" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
                             <button type="submit" class="btn btn-primary" style="margin-left: 0.5rem; padding: 0.35rem 2rem;">Enviar</button>
                         </div>
+
                     </form>
                 </div>
             </div>
@@ -279,6 +282,17 @@
 
     <script src="../static/scripts/lading-page.js"></script>
     <script src='../static/scripts/js/bootstrap.bundle.min.js'></script>
+    <script>
+        function limite_textarea(valor) {
+        quant = 300;
+        total = valor.length;
+        if(total <= quant) {
+            resto = quant - total;
+            document.getElementById('cont').innerHTML = resto;
+        } else {
+            document.getElementById('texto').value = valor.substr(0,quant);
+        }
+    }</script>
 </body>
 
 

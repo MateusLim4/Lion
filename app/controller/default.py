@@ -8,6 +8,7 @@ from app.model.tables import Usuarios
 from api_login.api import validaUser, loginUser, criaUser, Login
 
 light = ['bg-light','bg-body','text-dark','border-body','border-body','black']
+
 dark = ['bg-dark','bg-black','text-light','border-dark','border-body','white']
 
 def getDate():
@@ -21,11 +22,13 @@ def getDate():
 
     return complete
 
+
 def validaDados(dado1, dado2):
     if dado1 == dado2:
         return True
     else:
         return False
+
 
 @login_manager.user_loader
 def get_user(user_id):
@@ -44,6 +47,7 @@ def home():
     else:
         return render_template("login.html")
 
+
 @app.route("/perfil")
 def perfil():
     if current_user.is_authenticated:
@@ -53,7 +57,6 @@ def perfil():
         elif current_user.theme == "dark":
             theme = dark
             return render_template("perfil.html",theme=theme)
-
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -118,6 +121,7 @@ def darkTheme(user_id):
     
     return redirect(url_for("home"))
 
+
 @app.route('/home/lightTheme/<int:user_id>', methods=['POST'])
 def lightTheme(user_id):
     query = Usuarios.query.filter_by(id=user_id).first()
@@ -129,6 +133,7 @@ def lightTheme(user_id):
     
     return redirect(url_for("home"))
 
+
 @app.route('/perfil/darkTheme/<int:user_id>', methods=['POST'])
 def darkPerfil(user_id):
     query = Usuarios.query.filter_by(id=user_id).first()
@@ -139,6 +144,7 @@ def darkPerfil(user_id):
     db.session.close()
     
     return redirect(url_for("perfil"))
+
 
 @app.route('/perfil/lightTheme/<int:user_id>', methods=['POST'])
 def lightPerfil(user_id):

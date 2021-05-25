@@ -22,3 +22,4 @@ class Usuarios(db.Model, UserMixin):
         self.theme = theme
         self.created_at = created_at
         self.updated_at = updated_at
+
