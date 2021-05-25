@@ -4,7 +4,7 @@ from datetime import date, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, UserMixin, current_user
 from app import login_manager, app, db
-from app.model.tables import Usuarios, Follow
+from app.model.tables import Usuarios
 from api_login.api import validaUser, loginUser, criaUser, Login
 
 light = ['bg-light','bg-body','text-dark','border-body','border-body','black']
