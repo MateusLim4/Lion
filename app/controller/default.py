@@ -4,12 +4,13 @@ from datetime import date, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, UserMixin, current_user
 from app import login_manager, app, db
-from app.model.tables import Usuarios
+from app.model.tables import Usuarios, Follow
 from api_login.api import validaUser, loginUser, criaUser, Login
 
 light = ['bg-light','bg-body','text-dark','border-body','border-body','black']
 
 dark = ['bg-dark','bg-black','text-light','border-dark','border-body','white']
+
 
 def getDate():
     today = date.today()
@@ -35,6 +36,11 @@ def get_user(user_id):
     return Usuarios.query.filter_by(id=user_id).first()
 
 
+@app.route("/")
+def index():
+    return redirect(url_for("home"))
+
+
 @app.route("/home")
 def home():
     if current_user.is_authenticated:
@@ -51,12 +57,13 @@ def home():
 @app.route("/perfil")
 def perfil():
     if current_user.is_authenticated:
+        user_follow = Follow.query.filter_by(user=current_user.username).first()
         if current_user.theme == "light":
             theme = light
-            return render_template("perfil.html",theme=theme)
+            return render_template("perfil.html",theme=theme, user_follow=user_follow)
         elif current_user.theme == "dark":
             theme = dark
-            return render_template("perfil.html",theme=theme)
+            return render_template("perfil.html",theme=theme, user_follow=user_follow)
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -98,6 +105,11 @@ def auth_singup():
         criaUser(username, password)
 
         db.session.add(usuario)
+        db.session.commit()
+
+        follow = Follow(usuario.username, 0, 0)
+
+        db.session.add(follow)
         db.session.commit()
 
         return render_template("login.html", mensagem="Usuário criado com sucesso!")  

@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 from flask_login import LoginManager, login_manager, UserMixin
+import sys
+
+sys.dont_write_bytecode = True
 
 app = Flask(__name__, template_folder="templates")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///usuario.db"
